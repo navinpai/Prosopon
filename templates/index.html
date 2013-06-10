@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Persona Demonstration</title>
+        <script src="https://login.persona.org/include.js"></script>
+        <link rel="stylesheet" href="static/persona-buttons.css"/>
+        <style>
+            .authentication p {
+                display: inline-block;
+                font-size: small;
+            }
+            .whoami {
+                font-weight: bold;
+                font-style: italic;
+            }
+            .important {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>
+            <p class="important">
+                This demonstration does not work without JavaScript.
+            </p>
+        </noscript>
+        <div class="authentication">
+            <a href="#" class="persona-button">
+                <span>Sign in with your e-mail</span>
+            </a>
+            <p>
+                You are currently known as <span class="whoami">{{ me.identifier }}</span>.
+            </p>
+        </div>
+        <script src="static/identify.js"></script>
+        <p>
+            Hello there.  Here is a list of recent visitors:
+        </p>
+        <ul id="visitors_list">
+        {% for visitor in visitors %}
+            <li data-visitorid="{{ visitor.id }}">
+            {{ visitor.identifier }} {{ visitor.this_is_you() }} last visited {{ visitor.lastpath}} at {{ visitor.lastvisit }}
+            </li>
+        {% endfor %}
+        </ul>
+        <script src="static/visitors.js"></script>
+    </body>
+</html>
